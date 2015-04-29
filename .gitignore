@@ -50,3 +50,4 @@ local.properties
 .classpath
 .project
 /target/
+app.log
