@@ -1,26 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- configuration file for LogBack (slf4J implementation)
-See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-through-the-java-loggers/ -->
+<!-- configuration file for LogBack (slf4J implementation) See here for more 
+	details: http://gordondickens.com/wordpress/2013/03/27/sawing-through-the-java-loggers/ -->
 <configuration scan="true" scanPeriod="30 seconds">
 
-    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
-        <resetJUL>true</resetJUL>
-    </contextListener>
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
 
-    <!-- To enable JMX Management -->
-    <jmxConfigurator/>
+	<!-- To enable JMX Management -->
+	<jmxConfigurator />
 
-    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%-5level %logger{0} - %msg%n</pattern>
-        </encoder>
-    </appender>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+	<filter class="ch.qos.logback.core.LevelFilter">
+		<level>info</level>
+		<onMatch>accept</onMatch>
+		<onMismatch>deny</onMismatch>
+		</filter>
+		<encoder>
+			<pattern>%-5level %logger{0} - %msg%n</pattern>
+		</encoder>
+	</appender>
 
-	<!--<logger name="org.hibernate" level="debug"/> -->
-   <!-- Uncomment and add your logger here:
-    <logger name="org.springframework.samples.service.service" level="debug"/> -->
-         
-    <root level="info">
-        <appender-ref ref="console"/>
-    </root>
+
+	
+	<appender name="file" class="ch.qos.logback.core.FileAppender">
+		<file>app.log</file>
+		
+		<append>true</append>
+		<encoder>
+			<pattern>%-5level %logger{0} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<logger name="org.springframework.samples.service.service"
+		level="debug" />
+
+	<root level="info">
+		<appender-ref ref="console" />
+		<appender-ref ref="file" />
+	</root>
 </configuration>

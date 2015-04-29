@@ -49,3 +49,4 @@ local.properties
 ### Eclipse Patch ###
 .classpath
 .project
+/target/
