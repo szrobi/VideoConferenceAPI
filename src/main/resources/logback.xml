@@ -11,10 +11,10 @@
 	<jmxConfigurator />
 
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-	<filter class="ch.qos.logback.core.LevelFilter">
-		<level>info</level>
-		<onMatch>accept</onMatch>
-		<onMismatch>deny</onMismatch>
+	<filter class="ch.qos.logback.classic.filter.LevelFilter">
+		<level>INFO</level>
+		<onMatch>ACCEPT</onMatch>
+		<onMismatch>DENY</onMismatch>
 		</filter>
 		<encoder>
 			<pattern>%-5level %logger{0} - %msg%n</pattern>
