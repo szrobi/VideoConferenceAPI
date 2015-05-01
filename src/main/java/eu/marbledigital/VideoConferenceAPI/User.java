@@ -13,9 +13,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * User entity class
- * 
+ *
  * @author Robert Szabados
  *
  */
@@ -24,75 +25,73 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "fos_user")
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected Integer id;
-	
-	@Column(length=255,name="username")
-	protected String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Integer id;
 
-	@Column(length = 255, name = "first_name")
-	protected String firstName;
-	
-	@Column(length = 255, name = "last_name")
-	protected String lastName;
-	
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "owner", targetEntity = Room.class, fetch=FetchType.LAZY)
-	protected List<Room> rooms;
+    @Column(length = 255, name = "username")
+    protected String username;
 
-	@JsonIgnore
-	@ManyToMany(targetEntity=Room.class, mappedBy="joinedUsers", fetch=FetchType.LAZY)
-	protected List<Room> roomsJoined;
-	
+    @Column(length = 255, name = "first_name")
+    protected String firstName;
 
-	public List<Room> getroomsJoined() {
-		return roomsJoined;
-	}
+    @Column(length = 255, name = "last_name")
+    protected String lastName;
 
-	public void setroomsJoined(List<Room> $roomsJoined) {
-		this.roomsJoined = $roomsJoined;
-	}
+    @JsonIgnore
+    @OneToMany(mappedBy = "owner", targetEntity = Room.class, fetch = FetchType.LAZY)
+    protected List<Room> rooms;
 
-	public List<Room> getRooms() {
-		return rooms;
-	}
+    @JsonIgnore
+    @ManyToMany(targetEntity = Room.class, mappedBy = "joinedUsers", fetch = FetchType.LAZY)
+    protected List<Room> roomsJoined;
 
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
-	}
+    public List<Room> getroomsJoined() {
+        return roomsJoined;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setroomsJoined(List<Room> $roomsJoined) {
+        this.roomsJoined = $roomsJoined;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public List<Room> getRooms() {
+        return rooms;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	public String getUsername() {
-		return username;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 }

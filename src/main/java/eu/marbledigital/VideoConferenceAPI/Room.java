@@ -15,11 +15,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NamedQuery;
 import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * Room entity class
- * 
+ *
  * @author Robert Szabados
  *
  */
@@ -27,106 +27,106 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "room")
 public class Room {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected Integer id;
 
-	@Column(length = 255, name = "token")
-	protected String token;
-	@Column(length = 255, name = "name")
-	protected String name;
-	@Column(length = 255, name = "description")
-	protected String description;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Integer id;
 
-	// Hivatkozunk a felhasználóra
-	@ManyToOne(targetEntity = User.class)
-	@JoinColumn(name = "owner_id", nullable = false, referencedColumnName = "id")
-	protected User owner;
+    @Column(length = 255, name = "token")
+    protected String token;
+    @Column(length = 255, name = "name")
+    protected String name;
+    @Column(length = 255, name = "description")
+    protected String description;
 
-	@DateTimeFormat
-	@Column(name = "createdat")
-	protected Date createdAt;
+    // Hivatkozunk a felhasználóra
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "owner_id", nullable = false, referencedColumnName = "id")
+    protected User owner;
 
-	@Column(name = "max_users")
-	protected Integer maxUsers;
-	@Column(name = "is_public")
-	protected Boolean isPublic;
+    @DateTimeFormat
+    @Column(name = "createdat")
+    protected Date createdAt;
 
-	
-	@ManyToMany(targetEntity = User.class,fetch=FetchType.EAGER)
-	@JoinTable(name = "joined_users", joinColumns = @JoinColumn(name = "room_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-	protected List<User> joinedUsers;
+    @Column(name = "max_users")
+    protected Integer maxUsers;
+    @Column(name = "is_public")
+    protected Boolean isPublic;
 
-	public List<User> getJoinedUsers() {
-		return joinedUsers;
-	}
+    @ManyToMany(targetEntity = User.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "joined_users", joinColumns = @JoinColumn(name = "room_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    protected List<User> joinedUsers;
 
-	public void setJoinedUsers(List<User> joinedUsers) {
-		this.joinedUsers = joinedUsers;
-	}
+    public List<User> getJoinedUsers() {
+        return joinedUsers;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public void setJoinedUsers(List<User> joinedUsers) {
+        this.joinedUsers = joinedUsers;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getToken() {
-		return token;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setToken(String token) {
-		this.token = token;
-	}
+    public String getToken() {
+        return token;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setToken(String token) {
+        this.token = token;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public User getOwner() {
-		return owner;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
+    public User getOwner() {
+        return owner;
+    }
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-	public Integer getMaxUsers() {
-		return maxUsers;
-	}
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
-	public void setMaxUsers(Integer maxUsers) {
-		this.maxUsers = maxUsers;
-	}
+    public Integer getMaxUsers() {
+        return maxUsers;
+    }
 
-	public Boolean getIsPublic() {
-		return isPublic;
-	}
+    public void setMaxUsers(Integer maxUsers) {
+        this.maxUsers = maxUsers;
+    }
 
-	public void setIsPublic(Boolean isPublic) {
-		this.isPublic = isPublic;
-	}
+    public Boolean getIsPublic() {
+        return isPublic;
+    }
+
+    public void setIsPublic(Boolean isPublic) {
+        this.isPublic = isPublic;
+    }
 
 }

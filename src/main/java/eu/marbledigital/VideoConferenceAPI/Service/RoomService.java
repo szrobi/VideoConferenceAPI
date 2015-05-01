@@ -1,6 +1,5 @@
 package eu.marbledigital.VideoConferenceAPI.Service;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +12,25 @@ import eu.marbledigital.VideoConferenceAPI.Repository.RoomRepository;
 
 /**
  * A service layer for database queries
- * 
+ *
  * @author Robert Szabados
  *
  */
-
 @Service
 public class RoomService {
-	@Autowired 
-	RoomRepository roomRepository;
 
+    @Autowired(required = true)
+    RoomRepository roomRepository;
 
-	public Iterable<Room> findRooms(Pageable pageable) {
-		return roomRepository.findAll(pageable);
-	}
-	public Room findOneRoom(Integer roomId) {
-		return roomRepository.findOne(roomId);
-	}
+    public Iterable<Room> findAll(Pageable pageable) {
+        return roomRepository.findAll(pageable);
+    }
 
-	public List<User>findRoomUsers(Integer roomId){
-		return roomRepository.findJoinedUsersById(roomId);
-	}
+    public Room findOne(Integer roomId) {
+        return roomRepository.findOne(roomId);
+    }
+
+    public List<User> findRoomUsers(Integer roomId) {
+        return roomRepository.findJoinedUsersById(roomId);
+    }
 }
